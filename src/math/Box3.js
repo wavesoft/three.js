@@ -285,6 +285,21 @@ Box3.prototype = {
 
 	},
 
+	getPoint: function ( point, optionalTarget ) {
+
+		// This calculates the inverse of getParameter: Given a normalized
+		// value between 0.00 ~ 1.00 it returns a coordinate from the box
+
+		var result = optionalTarget || new Vector3();
+
+		return result.set(
+			this.min.x + (this.max.x - this.min.x) * point.x,
+			this.min.y + (this.max.y - this.min.y) * point.y,
+			this.min.z + (this.max.z - this.min.z) * point.z
+		);
+
+	},
+
 	intersectsBox: function ( box ) {
 
 		// using 6 splitting planes to rule out intersections.
